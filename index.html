@@ -1048,15 +1048,6 @@ function Home({ goStudy }) {
           {[["🔬","Researcher"],["✏️","Designer"],["🧩","Systems thinker"],["💻","Vibe-coder"]].map(([icon,label]) =>
           <span key={label} className="fact-pill trade-pill"><span className="fact-icon">{icon}</span>{label}</span>)}
         </div>
-        <div className="personal-also">WHO I AM OUTSIDE MY TRADE
-</div>
-        <div className="facts-row">
-          {FUN_FACTS.map((f) =>
-          <span key={f.label} className="fact-pill">
-            <span className="fact-icon">{f.icon}</span>
-            {f.label}
-          </span>)}
-        </div>
       </div>
 
       {/* Projects */}
@@ -1238,6 +1229,16 @@ function About() {
           <p className="about-p fu d4">Currently at <strong>Bell</strong>, working across consumer and internal product experiences.</p>
         </div>
         <div className="about-facts fu d3">
+          <div>
+            <div className="af-label">Who I am outside my trade</div>
+            <div className="facts-row" style={{ marginTop: 8 }}>
+              {FUN_FACTS.map((f) =>
+              <span key={f.label} className="fact-pill">
+                <span className="fact-icon">{f.icon}</span>
+                {f.label}
+              </span>)}
+            </div>
+          </div>
           <div><div className="af-label">Currently</div><div className="af-val">Bell Canada — UX Researcher & Designer</div></div>
           <div><div className="af-label">Based in</div><div className="af-val">Toronto, Ontario</div></div>
           <div><div className="af-label">Specialties</div><div className="af-val">UX Research · Experience Strategy · Vibe-coding · Service Design · Systems Thinking</div></div>
