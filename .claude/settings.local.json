@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3 *)",
       "Bash(sed 's/},$/}/')",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(/usr/bin/grep -n \"Story\" ~/portfolio/index.html)",
+      "Bash(/usr/bin/grep -c \"Story\" ~/portfolio/index.html)"
     ]
   }
 }
