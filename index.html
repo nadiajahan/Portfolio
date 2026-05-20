@@ -1271,8 +1271,27 @@ function Footer() {
 
 // ── App ──────────────────────────────────────────────────────────────────────
 function App() {
-  const [view, setView] = React.useState('home');
-  const [studyId, setStudyId] = React.useState(null);
+  const getStateFromHash = () => {
+    const hash = window.location.hash.slice(1);
+    if (hash.startsWith('study/')) return { view: 'study', studyId: hash.slice(6) };
+    if (hash === 'about') return { view: 'about', studyId: null };
+    return { view: 'home', studyId: null };
+  };
+
+  const initial = getStateFromHash();
+  const [view, setView] = React.useState(initial.view);
+  const [studyId, setStudyId] = React.useState(initial.studyId);
+
+  React.useEffect(() => {
+    const onHashChange = () => {
+      const s = getStateFromHash();
+      setView(s.view);
+      setStudyId(s.studyId);
+      window.scrollTo({ top: 0 });
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   const [tweaks, setTweak] = useTweaks(/*EDITMODE-BEGIN*/{
     "accentColor": "#2d4a3e",
@@ -1287,8 +1306,8 @@ function App() {
     "'Instrument Serif', Georgia, serif");
   }, [tweaks]);
 
-  const go = (v) => {setView(v);window.scrollTo({ top: 0 });};
-  const goStudy = (id) => {setStudyId(id);setView('study');};
+  const go = (v) => { window.location.hash = v === 'home' ? '' : v; };
+  const goStudy = (id) => { window.location.hash = 'study/' + id; };
 
   return (
     <>
